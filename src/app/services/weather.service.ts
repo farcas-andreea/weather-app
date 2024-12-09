@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { FavoriteCity } from '../models/weather.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,13 @@ export class WeatherService {
   currentCity = this.citySubject.asObservable();
 
   apiKey: string = '4a0f82fee1265faa9f0ddf5ce1449af5';
+
+  private favoriteCities: FavoriteCity[] = [
+    { name: 'New York' },
+    { name: 'London' },
+    { name: 'Paris' },
+    { name: 'Tokyo' },
+  ];
 
   constructor(private http: HttpClient) {}
 
@@ -28,5 +36,15 @@ export class WeatherService {
     return this.http.get(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${this.apiKey}`
     );
+  }
+
+  getFavoriteCities(): FavoriteCity[] {
+    return this.favoriteCities;
+  }
+  updateFavoriteCityWeather(city: FavoriteCity) {
+    this.getCurrentWeather(city.name).subscribe((data: any) => {
+      city.temp = Math.round(data.main.temp);
+      city.weather = data.weather[0].description;
+    });
   }
 }

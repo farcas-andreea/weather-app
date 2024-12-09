@@ -1,19 +1,19 @@
+<!-- src/app/components/sidebar/sidebar.component.html -->
 <div class="sidebar p-3 text-light">
-  <h5 class="mb-4">Locations</h5>
-  <div class="location-item mb-3">
-    <div class="d-flex justify-content-between align-items-center">
-      <span>Oradea</span>
-      <span class="badge bg-secondary">3°C</span>
-    </div>
-    <small class="text-muted">Cloudy</small>
-  </div>
+  <h5 class="mb-4">Favorite Locations</h5>
 
-  <div class="location-item mb-3">
-    <div class="d-flex justify-content-between align-items-center">
-      <span>Munich</span>
-      <span class="badge bg-secondary">0°C</span>
+  <div class="location-item mb-3" *ngFor="let city of favoriteCities">
+    <div
+      class="d-flex justify-content-between align-items-center"
+      (click)="selectCity(city.name)"
+      style="cursor: pointer"
+    >
+      <span>{{ city.name }}</span>
+      <span class="badge bg-secondary" *ngIf="city.temp"
+        >{{ city.temp }}°C</span
+      >
     </div>
-    <small class="text-muted">Cloudy</small>
+    <small class="text-muted" *ngIf="city.weather">{{ city.weather }}</small>
   </div>
 
   <hr class="bg-light" />

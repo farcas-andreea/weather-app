@@ -24,3 +24,9 @@ export interface ForecastItem {
     }
   ];
 }
+
+export interface FavoriteCity {
+  name: string;
+  temp?: number;
+  weather?: string;
+}
