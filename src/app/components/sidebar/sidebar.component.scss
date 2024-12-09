@@ -1,0 +1,47 @@
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+
+  h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .location-item {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    .d-flex {
+      align-items: center;
+    }
+
+    span {
+      transition: color 0.2s ease;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+    }
+
+    &:hover span {
+      color: #ffffff;
+    }
+  }
+
+  small.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  hr {
+    border-color: rgba(255, 255, 255, 0.2);
+    margin: 1.5rem 0;
+  }
+}

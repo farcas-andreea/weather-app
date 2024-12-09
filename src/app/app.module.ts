@@ -9,6 +9,7 @@ import { HourlyForecastComponent } from './pages/hourly-forecast/hourly-forecast
 import { FiveDayForecastComponent } from './pages/five-day-forecast/five-day-forecast.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     CurrentWeatherComponent,
     HourlyForecastComponent,
     FiveDayForecastComponent,
+    SidebarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
