@@ -1,8 +1,9 @@
 // src/app/services/weather.service.ts
-import { Injectable } from '@angular/core';
+import { EnvironmentInjector, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { FavoriteCity } from '../models/weather.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,7 @@ import { FavoriteCity } from '../models/weather.interface';
 export class WeatherService {
   private citySubject = new BehaviorSubject<string>('New York');
   currentCity = this.citySubject.asObservable();
-
-  apiKey: string = '4a0f82fee1265faa9f0ddf5ce1449af5';
+  private apiKey = environment.apiKey;
 
   private favoriteCities: FavoriteCity[] = [
     { name: 'Oradea' },
