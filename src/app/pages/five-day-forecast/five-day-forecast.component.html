@@ -1,0 +1,19 @@
+<!-- src/app/pages/five-day-forecast/five-day-forecast.component.html -->
+<div class="container mt-4" *ngIf="dailyForecast.length">
+  <h2>5-Day Forecast for {{ forecastData.city.name }}</h2>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let day of dailyForecast">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ day.date | date }}</h5>
+          <p class="card-text">High: {{ day.tempMax }}°C</p>
+          <p class="card-text">Low: {{ day.tempMin }}°C</p>
+          <p class="card-text">{{ day.weather | titlecase }}</p>
+          <p class="card-text">
+            Precipitation: {{ day.precipitation * 100 | number : "1.0-0" }}%
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

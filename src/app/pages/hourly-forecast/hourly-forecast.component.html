@@ -1,0 +1,21 @@
+<!-- src/app/pages/hourly-forecast/hourly-forecast.component.html -->
+<div class="container mt-4" *ngIf="forecastData">
+  <h2>Hourly Forecast for {{ forecastData.city.name }}</h2>
+  <div class="row">
+    <div
+      class="col-md-3"
+      *ngFor="let item of forecastData.list | slice : 0 : 8"
+    >
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.dt_txt | date : "shortTime" }}</h5>
+          <p class="card-text">Temp: {{ item.main.temp }}°C</p>
+          <p class="card-text">Precipitation: {{ item.pop * 100 }}%</p>
+          <p class="card-text">
+            Wind: {{ item.wind.speed }} m/s, {{ item.wind.deg }}°
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
