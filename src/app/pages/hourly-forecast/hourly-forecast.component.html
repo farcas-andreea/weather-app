@@ -7,13 +7,28 @@
       *ngFor="let item of forecastData.list | slice : 0 : 8"
     >
       <div class="card mb-3">
-        <div class="card-body">
+        <div class="card-body text-center">
           <h5 class="card-title">{{ item.dt_txt | date : "shortTime" }}</h5>
-          <p class="card-text">Temp: {{ item.main.temp }}°C</p>
-          <p class="card-text">Precipitation: {{ item.pop * 100 }}%</p>
+          <img
+            src="https://openweathermap.org/img/wn/{{
+              item.weather[0].icon
+            }}@2x.png"
+            alt="{{ item.weather[0].description }}"
+            class="weather-icon mb-2"
+          />
+          <p class="card-text">{{ item.weather[0].description | titlecase }}</p>
           <p class="card-text">
-            Wind: {{ item.wind.speed }} m/s, {{ item.wind.deg }}°
+            <strong>{{ item.main.temp | number : "1.0-1" }}°C</strong>
           </p>
+          <div class="weather-details">
+            <p class="card-text">
+              <i class="fas fa-tint"></i>
+              {{ item.pop * 100 | number : "1.0-0" }}%
+            </p>
+            <p class="card-text">
+              <i class="fas fa-wind"></i> {{ item.wind.speed }} m/s
+            </p>
+          </div>
         </div>
       </div>
     </div>

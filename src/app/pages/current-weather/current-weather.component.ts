@@ -11,6 +11,7 @@ export class CurrentWeatherComponent implements OnInit {
   weatherData: any;
   city: string = '';
   unit: string = 'metric';
+  originalTemp: number = 0;
 
   constructor(private weatherService: WeatherService) {}
 
@@ -24,11 +25,22 @@ export class CurrentWeatherComponent implements OnInit {
   getWeather() {
     this.weatherService.getCurrentWeather(this.city).subscribe((data) => {
       this.weatherData = data;
+      this.originalTemp = this.weatherData.main.temp;
     });
+  }
+
+  getConvertedTemp(): number {
+    if (this.unit === 'metric') {
+      return this.originalTemp;
+    }
+    return (this.originalTemp * 9) / 5 + 32;
+  }
+
+  convertUnixTimestamp(timestamp: number): Date {
+    return new Date(timestamp * 1000);
   }
 
   toggleUnit() {
     this.unit = this.unit === 'metric' ? 'imperial' : 'metric';
-    this.getWeather();
   }
 }

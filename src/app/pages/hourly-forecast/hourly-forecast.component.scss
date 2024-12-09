@@ -1,0 +1,14 @@
+.weather-icon {
+  width: 80px;
+  height: 80px;
+}
+.weather-details {
+  font-size: 0.9rem;
+  color: #666;
+}
+.card {
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}

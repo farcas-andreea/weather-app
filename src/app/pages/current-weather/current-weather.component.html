@@ -1,8 +1,19 @@
 <!-- src/app/pages/current-weather/current-weather.component.html -->
 <div class="container mt-4" *ngIf="weatherData">
   <h2>{{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
-  <h3>{{ weatherData.weather[0].description | titlecase }}</h3>
-  <h1>{{ weatherData.main.temp }}° {{ unit === "metric" ? "C" : "F" }}</h1>
+  <h3>
+    <img
+      src="https://openweathermap.org/img/wn/{{
+        weatherData.weather[0].icon
+      }}@2x.png"
+      alt="weather icon"
+    />
+    {{ weatherData.weather[0].description | titlecase }}
+  </h3>
+  <h1>
+    {{ getConvertedTemp() | number : "1.0-1" }}°
+    {{ unit === "metric" ? "C" : "F" }}
+  </h1>
   <button class="btn btn-primary" (click)="toggleUnit()">
     Toggle {{ unit === "metric" ? "Fahrenheit" : "Celsius" }}
   </button>
@@ -15,10 +26,16 @@
       Pressure: {{ weatherData.main.pressure }} hPa
     </li>
     <li class="list-group-item">
-      Sunrise: {{ weatherData.sys.sunrise | date : "shortTime" }}
+      Sunrise:
+      {{ convertUnixTimestamp(weatherData.sys.sunrise) | date : "h:mm a" }}
     </li>
     <li class="list-group-item">
-      Sunset: {{ weatherData.sys.sunset | date : "shortTime" }}
+      Sunset:
+      {{ convertUnixTimestamp(weatherData.sys.sunset) | date : "h:mm a" }}
+    </li>
+    <li class="list-group-item">
+      Feels Like: {{ weatherData.main.feels_like | number : "1.0-1" }}°
+      {{ unit === "metric" ? "C" : "F" }}
     </li>
   </ul>
 </div>
