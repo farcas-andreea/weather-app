@@ -1,5 +1,5 @@
 // src/app/services/weather.service.ts
-import { EnvironmentInjector, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { FavoriteCity } from '../models/weather.interface';
