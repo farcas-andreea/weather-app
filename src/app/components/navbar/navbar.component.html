@@ -12,13 +12,32 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/current-weather">Current Weather</a>
+        <a
+          class="nav-link"
+          routerLink="/current-weather"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Current Weather
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/hourly-forecast">Hourly Forecast</a>
+        <a
+          class="nav-link"
+          routerLink="/hourly-forecast"
+          routerLinkActive="active"
+        >
+          Hourly Forecast
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/five-day-forecast">5-Day Forecast</a>
+        <a
+          class="nav-link"
+          routerLink="/five-day-forecast"
+          routerLinkActive="active"
+        >
+          5-Day Forecast
+        </a>
       </li>
     </ul>
     <form class="form-inline ms-auto">
