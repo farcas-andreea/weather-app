@@ -10,6 +10,7 @@ import { FavoriteCity } from 'src/app/models/weather.interface';
 })
 export class SidebarComponent implements OnInit {
   favoriteCities: FavoriteCity[] = [];
+  newCityName: string = '';
 
   constructor(private weatherService: WeatherService) {}
 
@@ -20,6 +21,23 @@ export class SidebarComponent implements OnInit {
 
   selectCity(cityName: string) {
     this.weatherService.setCity(cityName);
+  }
+  addCity() {
+    if (this.newCityName.trim()) {
+      // Verify city exists by trying to get its weather
+      this.weatherService.getCurrentWeather(this.newCityName).subscribe({
+        next: () => {
+          if (this.weatherService.addFavoriteCity(this.newCityName)) {
+            this.newCityName = ''; // Clear input on success
+          } else {
+            alert('City already in favorites!');
+          }
+        },
+        error: () => {
+          alert('City not found! Please check the name.');
+        },
+      });
+    }
   }
 
   private updateWeatherData() {

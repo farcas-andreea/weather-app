@@ -14,7 +14,7 @@ export class WeatherService {
   apiKey: string = '4a0f82fee1265faa9f0ddf5ce1449af5';
 
   private favoriteCities: FavoriteCity[] = [
-    { name: 'New York' },
+    { name: 'Oradea' },
     { name: 'London' },
     { name: 'Paris' },
     { name: 'Tokyo' },
@@ -46,5 +46,19 @@ export class WeatherService {
       city.temp = Math.round(data.main.temp);
       city.weather = data.weather[0].description;
     });
+  }
+
+  addFavoriteCity(cityName: string) {
+    if (
+      !this.favoriteCities.some(
+        (city) => city.name.toLowerCase() === cityName.toLowerCase()
+      )
+    ) {
+      const newCity: FavoriteCity = { name: cityName };
+      this.favoriteCities.push(newCity);
+      this.updateFavoriteCityWeather(newCity);
+      return true;
+    }
+    return false;
   }
 }

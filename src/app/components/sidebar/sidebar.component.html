@@ -1,7 +1,18 @@
 <!-- src/app/components/sidebar/sidebar.component.html -->
 <div class="sidebar p-3 text-light">
   <h5 class="mb-4">Favorite Locations</h5>
-
+  <form (ngSubmit)="addCity()" class="mb-4">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="newCityName"
+        name="newCity"
+        placeholder="Enter city name"
+      />
+      <button class="btn btn-outline-light" type="submit">Add</button>
+    </div>
+  </form>
   <div class="location-item mb-3" *ngFor="let city of favoriteCities">
     <div
       class="d-flex justify-content-between align-items-center"
