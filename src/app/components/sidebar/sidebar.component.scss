@@ -53,4 +53,13 @@
   small.text-muted {
     color: rgba(255, 255, 255, 0.6) !important;
   }
+
+  .delete-icon {
+    font-size: 0.8rem;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
 }

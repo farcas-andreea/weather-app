@@ -74,4 +74,11 @@ export class WeatherService {
     }
     return false;
   }
+
+  removeFavoriteCity(cityName: string) {
+    this.favoriteCities = this.favoriteCities.filter(
+      city => city.name !== cityName
+    );
+    this.saveFavoriteCities();
+  }
 }

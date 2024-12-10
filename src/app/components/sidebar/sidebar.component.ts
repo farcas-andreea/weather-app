@@ -42,6 +42,12 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  removeCity(event: Event, cityName: string) {
+    event.stopPropagation();
+    this.weatherService.removeFavoriteCity(cityName);
+    this.favoriteCities = this.weatherService.getFavoriteCities();
+  }
+
   private updateWeatherData() {
     this.favoriteCities.forEach((city) => {
       this.weatherService.updateFavoriteCityWeather(city);

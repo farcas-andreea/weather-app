@@ -1,4 +1,3 @@
-<!-- src/app/components/sidebar/sidebar.component.html -->
 <div class="sidebar p-3 text-light">
   <h5 class="mb-4">Favorite Locations</h5>
   <form (ngSubmit)="addCity()" class="mb-4">
@@ -22,7 +21,13 @@
   >
     <div class="d-flex justify-content-between align-items-center">
       <span>{{ city.name }}</span>
-      <span class="badge bg-secondary" *ngIf="city.temp">{{ city.temp }}°C</span>
+      <div class="d-flex align-items-center">
+        <span class="badge bg-secondary me-2" *ngIf="city.temp">{{ city.temp }}°C</span>
+        <i class="fas fa-times text-light-50 delete-icon" 
+           (click)="removeCity($event, city.name)"
+           style="cursor: pointer; opacity: 0.6;"
+           title="Remove from favorites"></i>
+      </div>
     </div>
     <small class="text-muted" *ngIf="city.weather">{{ city.weather }}</small>
   </div>
