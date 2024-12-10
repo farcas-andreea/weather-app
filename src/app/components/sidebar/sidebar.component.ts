@@ -11,24 +11,26 @@ import { FavoriteCity } from 'src/app/models/weather.interface';
 export class SidebarComponent implements OnInit {
   favoriteCities: FavoriteCity[] = [];
   newCityName: string = '';
+  activeCityName: string = '';
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
     this.favoriteCities = this.weatherService.getFavoriteCities();
     this.updateWeatherData();
+    this.selectCity('Oradea');
   }
 
   selectCity(cityName: string) {
+    this.activeCityName = cityName;
     this.weatherService.setCity(cityName);
   }
   addCity() {
     if (this.newCityName.trim()) {
-      // Verify city exists by trying to get its weather
       this.weatherService.getCurrentWeather(this.newCityName).subscribe({
         next: () => {
           if (this.weatherService.addFavoriteCity(this.newCityName)) {
-            this.newCityName = ''; // Clear input on success
+            this.newCityName = '';
           } else {
             alert('City already in favorites!');
           }

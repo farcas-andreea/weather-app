@@ -13,19 +13,17 @@
       <button class="btn btn-outline-light" type="submit">Add</button>
     </div>
   </form>
-  <div class="location-item mb-3" *ngFor="let city of favoriteCities">
-    <div
-      class="d-flex justify-content-between align-items-center"
-      (click)="selectCity(city.name)"
-      style="cursor: pointer"
-    >
+  <div 
+    class="location-item mb-3 p-3 rounded" 
+    *ngFor="let city of favoriteCities" 
+    [class.active]="city.name === activeCityName"
+    (click)="selectCity(city.name)"
+    style="cursor: pointer"
+  >
+    <div class="d-flex justify-content-between align-items-center">
       <span>{{ city.name }}</span>
-      <span class="badge bg-secondary" *ngIf="city.temp"
-        >{{ city.temp }}°C</span
-      >
+      <span class="badge bg-secondary" *ngIf="city.temp">{{ city.temp }}°C</span>
     </div>
     <small class="text-muted" *ngIf="city.weather">{{ city.weather }}</small>
   </div>
-
-  <hr class="bg-light" />
 </div>

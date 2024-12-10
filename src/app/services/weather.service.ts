@@ -9,18 +9,30 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class WeatherService {
-  private citySubject = new BehaviorSubject<string>('New York');
+  private citySubject = new BehaviorSubject<string>('Oradea');
   currentCity = this.citySubject.asObservable();
   private apiKey = environment.apiKey;
+  private readonly STORAGE_KEY = 'favoriteCities';
 
-  private favoriteCities: FavoriteCity[] = [
-    { name: 'Oradea' },
-    { name: 'London' },
-    { name: 'Paris' },
-    { name: 'Tokyo' },
-  ];
+  private favoriteCities: FavoriteCity[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadFavoriteCities();
+  }
+
+  private loadFavoriteCities() {
+    const stored = localStorage.getItem(this.STORAGE_KEY);
+    this.favoriteCities = stored ? JSON.parse(stored) : [
+      { name: 'Oradea' },
+      { name: 'London' },
+      { name: 'Paris' },
+      { name: 'Tokyo' },
+    ];
+  }
+
+  private saveFavoriteCities() {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.favoriteCities));
+  }
 
   setCity(city: string) {
     this.citySubject.next(city);
@@ -57,6 +69,7 @@ export class WeatherService {
       const newCity: FavoriteCity = { name: cityName };
       this.favoriteCities.push(newCity);
       this.updateFavoriteCityWeather(newCity);
+      this.saveFavoriteCities();
       return true;
     }
     return false;

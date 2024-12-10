@@ -7,13 +7,13 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
   }
 
   .location-item {
     font-size: 0.9rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
 
     &:last-of-type {
       border-bottom: none;
@@ -25,23 +25,32 @@
 
     span {
       transition: color 0.2s ease;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      
+      span {
+        color: #ffffff;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      
+      span {
+        color: #ffffff;
+      }
     }
 
     .badge {
       font-size: 0.8rem;
     }
-
-    &:hover span {
-      color: #ffffff;
-    }
   }
 
   small.text-muted {
     color: rgba(255, 255, 255, 0.6) !important;
-  }
-
-  hr {
-    border-color: rgba(255, 255, 255, 0.2);
-    margin: 1.5rem 0;
   }
 }
